@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  ai:
+    deepseek:
+      api-key: sk-4c31852667ea40849f8b49d0b2b1ed63
+      base-url: https://api.deepseek.com
+      chat:       
+        options:
+          model: deepseek-chat  # deepseek-chat 是 v3 模型, deepseek-reasoner 是 r1 模型
+          temperature: 0.8  # 温度值, 值越高越随机
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: qwen3:8b
+          temperature: 0.7
+    zhipuai:
+      api-key: 8ced379649b84ae4ad127dec683cd6d5.A3sDi9QwBgIGRr19
+      base-url: https://open.bigmodel.cn/api/paas
+      chat:
+        options:
+          model: glm-4-air
+          temperature: 0.7
+    # 用国内代理商调用 gpt-4o          
+#    openai:
+#      base-url: https://api.zhizengzeng.com/v1
+#      api-key: sk-zk25de7324152cb77fd0abdda6a45d4103b68735fdd68355
+#      chat:
+#        options:
+#          model: gpt-4o
+#          temperature: 0.7
+    # 用阿里云百炼调用 qwen-turbo
+    openai:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode 
+      api-key: sk-96d671942c8d4f54b140ba969b678162
+      chat:
+        options:
+          model: qwen-turbo
+          temperature: 0.7
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
