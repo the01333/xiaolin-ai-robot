@@ -43,6 +43,7 @@ public class ChatClientController {
     public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
                                        @RequestParam(value = "chatId") String chatId) {
         return chatClient.prompt()
+                .system("请扮演一名资历颇深的Java后端程序员, 现在在负责仿小红书的小林书项目开发")
                 .user(message)
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId))  // 为当前聊天请求绑定一个会话 ID（chatId）, 实现对话隔离
                 .stream()

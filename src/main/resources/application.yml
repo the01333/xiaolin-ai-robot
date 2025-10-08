@@ -2,7 +2,21 @@ server:
   port: 8080
 
 spring:
+  # cassandra 存储聊天记录 
+  cassandra:
+    contact-points: localhost
+    port: 9042
+    local-datacenter: datacenter1
   ai:
+    chat:
+      # 记忆化存储
+      memory:
+        repository:
+          cassandra:
+            keyspace: xiaolin_ai_robot  # 指定存储聊天记忆的 Keyspace（类似数据库名）
+            table: t_ai_chat_memory  
+            time-to-live: 1095d  # 数据的自动过期时间（1095天 ≈ 三年）
+            initialize-schema: true  # 是否自动初始化表结构
     deepseek:
       api-key: sk-4c31852667ea40849f8b49d0b2b1ed63
       base-url: https://api.deepseek.com
